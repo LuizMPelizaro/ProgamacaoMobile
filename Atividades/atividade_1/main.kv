@@ -1,0 +1,64 @@
+<Gerenciador>:
+    Menu:
+        name: 'menu'
+    Screen_1:
+        name: 'screen_1'
+    Screen_2:
+        name: 'screen_2'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        Button:
+            text: 'Tela 1'
+            on_release: app.root.current = 'screen_1'
+        Button:
+            text: 'Tela 2'
+            on_release: app.root.current = 'screen_2'
+    
+<Screen_1>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        Image:
+            source: 'bill.jpg'
+            size_hint_y: None
+            height: 200
+            allow_stretch: True
+        Label:
+            text: "Bill"
+            id: lbl
+        CheckBox:
+            on_active: root.on_checkbox_Active(self, self.active)
+
+<Screen_2>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            TextInput:
+                id:texto
+                fontsize:30
+                background_color:(1, 1, 1, 1)
+            Button:
+                text:'+'
+                size_hint_x: None
+                width: 60
+                on_release: root.addSpiner()
+        Label:
+            text: "Lista Suspensa"
+            id: escolha
+        Spinner:
+            id: spn
+            text: "Palavras"
+            text_autoupdate: True
+            values: []
+            on_text: root.spinner_Clicado(self.text)
+
+
