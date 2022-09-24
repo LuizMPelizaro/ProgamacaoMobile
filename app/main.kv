@@ -1,0 +1,68 @@
+<Gerenciador>:
+    Menu:
+        name: 'menu'
+    Cotacao:
+        name: 'cotacao'
+    Screen_2:
+        name: 'screen_2'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        Button:
+            text: 'Cotacao'
+            on_release: app.root.current = 'cotacao'
+        Button:
+            text: 'Euro'
+            on_release: app.root.current = 'screen_2'
+
+<Cotacao>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        Label:
+            text: "Moeda : "
+            id: lbl_moeda
+        Label:
+            text: "Data : "
+            id: lbl_data
+        Label:
+            text: "Valor : "
+            id: lbl_valor
+        Label:
+            text: "Digite a sigla da moeda que deseja ver:"
+        TextInput:
+            multiline: False
+            id: name_coin
+        Button:
+            text: 'Mostrar'
+            on_press: root.press()
+        Button:
+            text: 'Voltar'
+            on_press: app.root.current = 'menu'
+
+
+
+<Screen_2>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 100
+        spacing: 10
+        Label:
+            text: "Moeda :"
+            id: lbl_moeda
+        Label:
+            text: "Data : "
+            id: lbl_data
+        Label:
+            text: "Valor : "
+            id: lbl_valor
+        Button:
+            text: 'Mostrar'
+            on_press: root.press()
+        Button:
+            text: 'Voltar'
+            on_press: app.root.current = 'menu'
