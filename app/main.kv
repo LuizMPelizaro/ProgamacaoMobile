@@ -1,10 +1,10 @@
-<Gerenciador>:
+<Manager>:
     Menu:
         name: 'menu'
-    Cotacao:
-        name: 'cotacao'
-    Screen_2:
-        name: 'screen_2'
+    Price:
+        name: 'price'
+    Convert:
+        name: 'convert'
 
 <Menu>:
     BoxLayout:
@@ -12,26 +12,26 @@
         padding: 100
         spacing: 10
         Button:
-            text: 'Cotacao'
-            on_release: app.root.current = 'cotacao'
+            text: 'Price'
+            on_release: app.root.current = 'price'
         Button:
-            text: 'Euro'
-            on_release: app.root.current = 'screen_2'
+            text: 'Convert'
+            on_release: app.root.current = 'convert'
 
-<Cotacao>:
+<Price>:
     BoxLayout:
         orientation: 'vertical'
         padding: 100
         spacing: 10
         Label:
             text: "Moeda : "
-            id: lbl_moeda
+            id: lbl_coin
         Label:
             text: "Data : "
-            id: lbl_data
+            id: lbl_date
         Label:
             text: "Valor : "
-            id: lbl_valor
+            id: lbl_value
         Label:
             text: "Digite a sigla da moeda que deseja ver:"
         TextInput:
@@ -46,23 +46,25 @@
 
 
 
-<Screen_2>:
+<Convert>:
     BoxLayout:
         orientation: 'vertical'
         padding: 100
         spacing: 10
         Label:
-            text: "Moeda :"
-            id: lbl_moeda
-        Label:
-            text: "Data : "
-            id: lbl_data
-        Label:
-            text: "Valor : "
-            id: lbl_valor
+            text: 'Digite a sigla da moeda e o valor do qual deseja converter para Real'
+        TextInput:
+            multiline: False
+            id: name_coin
+        TextInput:
+            multiline: False
+            id: value_coin
         Button:
-            text: 'Mostrar'
-            on_press: root.press()
+            text:'Converter'
+            on_press: root.convert()
+        Label:
+            text:''
+            id: convert_value
         Button:
-            text: 'Voltar'
+            text:'voltar'
             on_press: app.root.current = 'menu'
