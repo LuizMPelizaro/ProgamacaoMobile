@@ -8,6 +8,3 @@ def get_currency(currency_abbreviation: str) -> json:
     request = requests.get(f'https://economia.awesomeapi.com.br/all/{currency_abbreviation}-BRL')
     cotacao = request.json()
     return cotacao
-
-x = get_currency('sgd')
-print(x['sgd'.upper()]['code'])

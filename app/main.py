@@ -18,10 +18,10 @@ class Price(Screen):
         coin_get = self.ids.name_coin.text.upper()
         coin_name = coin[coin_get]['name']
         coin_data = coin[coin_get]['create_date']
-        currency_value = coin[coin_get]['bid']
+        currency_value = float(coin[coin_get]['bid'])
         self.ids.lbl_coin.text = f'Moeda : {coin_name}'
         self.ids.lbl_date.text = f'Data : {coin_data}'
-        self.ids.lbl_value.text = f'Valor : {currency_value} R$'
+        self.ids.lbl_value.text = f'Valor : {currency_value: .2f} R$'
 
     @staticmethod
     def back():
@@ -35,7 +35,7 @@ class Convert(Screen):
         coin_get = self.ids.name_coin.text.upper()
         coin_value = float(coin[coin_get]['bid'])
         convert_value = value_to_convert * coin_value
-        self.ids.convert_value.text = f'Valor em R$ : {convert_value}'
+        self.ids.convert_value.text = f'Valor em R$ : {convert_value: .2f}'
 
     @staticmethod
     def back():
