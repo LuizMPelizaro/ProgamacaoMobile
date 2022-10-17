@@ -5,66 +5,655 @@
         name: 'price'
     Convert:
         name: 'convert'
+    QuoteOfWeek:
+        name: 'quote_of_week'
+    MultipleConvert:
+        name: 'multiple_convert'
+
+
 
 <Menu>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 100
-        spacing: 10
-        Button:
-            text: 'Price'
-            on_release: app.root.current = 'price'
-        Button:
-            text: 'Convert'
-            on_release: app.root.current = 'convert'
+    name: 'menu'
+    MDBoxLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation:'vertical'
+
+
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                MDLabel:
+                    text:" "
+                    halign: "center"
+                    font_size: "22sp"
+                    pos_hint: {"center_x": .5, "center_y": .45}
+                    id: lbdashboard
+
+
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+
+            Button:
+                text: "Converter"
+                background_color: 188/255, 227/255, 217/255, 1
+                font_name: "Poppins-Medium.ttf"
+                size_hint: .79, .065
+                pos_hint: {"center_x": .5, "center_y": .15}
+                on_release: app.root.current = 'convert'
+
+            Button:
+                text: "Cotação da semana"
+                background_color: 188/255, 227/255, 217/255, 1
+                font_name: "Poppins-Medium.ttf"
+                size_hint: .79, .065
+                pos_hint: {"center_x": .5, "center_y": .15}
+                on_release: app.root.current = 'quote_of_week'
+
+            Button:
+                text: "Cotação"
+                background_color: 188/255, 227/255, 217/255, 1
+                font_name: "Poppins-Medium.ttf"
+                size_hint: .79, .065
+                pos_hint: {"center_x": .5, "center_y": .15}
+                on_release: app.root.current = 'price'
+
+            Button:
+                text: "Multi Conversão"
+                background_color: 188/255, 227/255, 217/255, 1
+                font_name: "Poppins-Medium.ttf"
+                size_hint: .79, .065
+                pos_hint: {"center_x": .5, "center_y": .15}
+                on_release: app.root.current = 'multiple_convert'
+
+
+
 
 <Price>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 100
-        spacing: 10
-        Label:
-            text: "Moeda : "
-            id: lbl_coin
-        Label:
-            text: "Data : "
-            id: lbl_date
-        Label:
-            text: "Valor : "
-            id: lbl_value
-        Label:
-            text: "Digite a sigla da moeda que deseja ver:"
-        TextInput:
-            multiline: False
-            id: name_coin
-        Button:
-            text: 'Mostrar'
-            on_press: root.press()
-        Button:
-            text: 'Voltar'
+    name: 'price'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
             on_press: app.root.current = 'menu'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckin
+
+
+        MDLabel:
+            text: "Cotação"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                id: lbl_value
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .45}
+            MDLabel:
+                id: lbl_coin
+                text:"Moeda :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .25}
+            MDLabel:
+                id: lbl_date
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+
+        Button:
+            text: "Consultar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.press()
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+
+<QuoteOfWeek>:
+    name: 'quote_of_week'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'menu'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckin
+
+
+        MDLabel:
+            text: "Cotação"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .65}
+            MDLabel:
+                id: lbl_value_1
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .60}
+            MDLabel:
+                id: lbl_date_1
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .55}
+            MDLabel:
+                id: lbl_value_2
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .50}
+            MDLabel:
+                id: lbl_date_2
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .45}
+            MDLabel:
+                id: lbl_value_3
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .40}
+            MDLabel:
+                id: lbl_date_3
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                id: lbl_value_4
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .30}
+            MDLabel:
+                id: lbl_date_4
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .25}
+            MDLabel:
+                id: lbl_value_5
+                text:"Valor moeda:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .20}
+            MDLabel:
+                id: lbl_date_5
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .15}
+            MDLabel:
+                id: lbl_coin
+                text:"Moeda :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+
+        Button:
+            text: "Consultar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .1}
+            on_release: root.multi_convert_press()
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
 
 
 
 <Convert>:
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 100
-        spacing: 10
-        Label:
-            text: 'Digite a sigla da moeda e o valor do qual deseja converter para Real'
-        TextInput:
-            multiline: False
-            id: name_coin
-        TextInput:
-            multiline: False
-            id: value_coin
-        Button:
-            text:'Converter'
-            on_press: root.convert()
-        Label:
-            text:''
-            id: convert_value
-        Button:
-            text:'voltar'
+    name: 'convert'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
             on_press: app.root.current = 'menu'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckin
+
+
+        MDLabel:
+            text: "Converter o valor para Real"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .38}
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: value_coin
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                id: convert_value
+                text:"Valor em R$:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .45}
+            MDLabel:
+                id: lbl_coin
+                text:"Moeda :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .25}
+            MDLabel:
+                id: lbl_date
+                text:"Data :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        Button:
+            text: "Consultar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.convert()
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+<MultipleConvert>:
+    name: 'MultipleConvert'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'menu'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckin
+
+
+        MDLabel:
+            text: "Converter o valor para Real"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin_1
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .39}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin_2
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .27}
+            MDLabel:
+                text:"Moeda"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: name_coin_3
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .15}
+            MDLabel:
+                text:"Valor"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: value_coin
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .25}
+            MDLabel:
+                id: convert_value_1
+                text:"Valor em R$:"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .20}
+            MDLabel:
+                id: convert_value_2
+                text:"Valor em R$ :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .15}
+            MDLabel:
+                id: convert_value_3
+                text:"Valor em R$ :"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+
+        Button:
+            text: "Consultar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .1}
+            on_release: root.multiple_convert_press()
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
