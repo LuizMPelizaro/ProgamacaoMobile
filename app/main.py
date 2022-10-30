@@ -5,6 +5,7 @@ from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.app import MDApp
 from kivymd.uix.datatables import MDDataTable
+from plyer import battery
 
 from function.gets import get_currency, get_five_day_cotation, multiple_quote, get_hash
 
@@ -220,10 +221,23 @@ class BDScreen(Screen):
         )
 
         self.add_widget(self.data_tables)
+        pb_value = self.ids.my_progress_bar.value
+        self.ids.my_progress_bar.value = 1
 
         conn.commit()
 
         conn.close()
+
+    @staticmethod
+    def back():
+        return Manager()
+
+
+class Batery(Screen):
+    def batery(self):
+        self.ids.my_progress_bar.value = battery.status['percentage']
+        self.ids.porcentagem.text = f'Porcentagem : {battery.status["percentage"]}'
+        self.ids.carregando.text = f'Carregando : {battery.status["isCharging"]}'
 
     @staticmethod
     def back():
