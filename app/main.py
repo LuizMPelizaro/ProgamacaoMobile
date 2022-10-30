@@ -1,9 +1,10 @@
-from datetime import datetime
 import sqlite3
+from datetime import datetime
+
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.app import MDApp
 
-from function.gets import get_currency, get_five_day_cotation, multiple_quote
+from function.gets import get_currency, get_five_day_cotation, multiple_quote, get_hash
 
 
 class Manager(ScreenManager):
@@ -25,6 +26,25 @@ class Price(Screen):
         self.ids.lbl_date.text = f'Data : {coin_data}'
         self.ids.lbl_value.text = f'Valor : {currency_value: .2f} R$'
 
+        conn = sqlite3.connect('db.db')
+
+        c = conn.cursor()
+        hashss = get_hash()
+        c.execute("""CREATE TABLE IF not exists pesquisas(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tipo_pesquisa text NOT NULL,
+                    hora text NOT NULL)""")
+
+        c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+                  {
+                      'pk': hashss,
+                      'tipo': "Price",
+                      'hora': str(datetime.now())
+                  })
+        conn.commit()
+
+        conn.close()
+
     @staticmethod
     def back():
         return Manager()
@@ -44,6 +64,25 @@ class Convert(Screen):
         self.ids.convert_value.text = f'Valor em R$ : {convert_value: .2f}'
         self.ids.lbl_coin.text = f'Moeda : {coin_name}'
         self.ids.lbl_date.text = f'Data : {coin_data}'
+
+    conn = sqlite3.connect('db.db')
+
+    c = conn.cursor()
+    hashss = get_hash()
+    c.execute("""CREATE TABLE IF not exists pesquisas(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                tipo_pesquisa text NOT NULL,
+                hora text NOT NULL)""")
+
+    c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+              {
+                  'pk': hashss,
+                  'tipo': "Convert",
+                  'hora': str(datetime.now())
+              })
+    conn.commit()
+
+    conn.close()
 
     @staticmethod
     def back():
@@ -86,6 +125,25 @@ class QuoteOfWeek(Screen):
         self.ids.lbl_date_5.text = f'Data : {coin_data_5}'
         self.ids.lbl_value_5.text = f'Valor : {currency_value_5: .2f} R$'
 
+        conn = sqlite3.connect('db.db')
+
+        c = conn.cursor()
+        hashss = get_hash()
+        c.execute("""CREATE TABLE IF not exists pesquisas(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tipo_pesquisa text NOT NULL,
+                    hora text NOT NULL)""")
+
+        c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+                  {
+                      'pk': hashss,
+                      'tipo': "Time Convert",
+                      'hora': str(datetime.now())
+                  })
+        conn.commit()
+
+        conn.close()
+
     @staticmethod
     def back():
         return Manager()
@@ -111,6 +169,25 @@ class MultipleConvert(Screen):
         self.ids.convert_value_1.text = f'Valor em R$ : {convert_value_1: .2f}'
         self.ids.convert_value_2.text = f'Valor em R$ : {convert_value_2: .2f}'
         self.ids.convert_value_3.text = f'Valor em R$ : {convert_value_3: .2f}'
+
+        conn = sqlite3.connect('db.db')
+
+        c = conn.cursor()
+        hashss = get_hash()
+        c.execute("""CREATE TABLE IF not exists pesquisas(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tipo_pesquisa text NOT NULL,
+                    hora text NOT NULL)""")
+
+        c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+                  {
+                      'pk': hashss,
+                      'tipo': "Multiple Convert",
+                      'hora': str(datetime.now())
+                  })
+        conn.commit()
+
+        conn.close()
 
     @staticmethod
     def back():
