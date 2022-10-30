@@ -1,8 +1,10 @@
 import sqlite3
 from datetime import datetime
 
+from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.app import MDApp
+from kivymd.uix.datatables import MDDataTable
 
 from function.gets import get_currency, get_five_day_cotation, multiple_quote, get_hash
 
@@ -65,24 +67,24 @@ class Convert(Screen):
         self.ids.lbl_coin.text = f'Moeda : {coin_name}'
         self.ids.lbl_date.text = f'Data : {coin_data}'
 
-    conn = sqlite3.connect('db.db')
+        conn = sqlite3.connect('db.db')
 
-    c = conn.cursor()
-    hashss = get_hash()
-    c.execute("""CREATE TABLE IF not exists pesquisas(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                tipo_pesquisa text NOT NULL,
-                hora text NOT NULL)""")
+        c = conn.cursor()
+        hashss = get_hash()
+        c.execute("""CREATE TABLE IF not exists pesquisas(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    tipo_pesquisa text NOT NULL,
+                    hora text NOT NULL)""")
 
-    c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
-              {
-                  'pk': hashss,
-                  'tipo': "Convert",
-                  'hora': str(datetime.now())
-              })
-    conn.commit()
+        c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+                  {
+                      'pk': hashss,
+                      'tipo': "Convert",
+                      'hora': str(datetime.now())
+                  })
+        conn.commit()
 
-    conn.close()
+        conn.close()
 
     @staticmethod
     def back():
@@ -179,12 +181,46 @@ class MultipleConvert(Screen):
                     tipo_pesquisa text NOT NULL,
                     hora text NOT NULL)""")
 
-        c.execute("""INSERT INTO pesquisas VALUES (:pk,:tipo, :hora)""",
+        c.execute("""INSERT INTO pesquisas VALUES (:pk ,:tipo, :hora)""",
                   {
                       'pk': hashss,
                       'tipo': "Multiple Convert",
                       'hora': str(datetime.now())
                   })
+        conn.commit()
+
+        conn.close()
+
+    @staticmethod
+    def back():
+        return Manager()
+
+
+class BDScreen(Screen):
+    def bd_screen(self):
+        conn = sqlite3.connect('db.db')
+
+        c = conn.cursor()
+
+        c.execute("SELECT * FROM pesquisas")
+        records = c.fetchall()
+
+        word = ''
+        print(records)
+        self.data_tables = MDDataTable(
+            pos_hint={'center_y': 0.5, 'center_x': 0.5},
+            size_hint=(0.9, 0.6),
+            column_data=[
+                ("id", dp(30)),
+                ("tipo pesquisa", dp(50)),
+                ("hora", dp(50)),
+            ],
+            row_data=(records),
+            check=True
+        )
+
+        self.add_widget(self.data_tables)
+
         conn.commit()
 
         conn.close()
