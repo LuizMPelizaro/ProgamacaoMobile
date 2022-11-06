@@ -1,11 +1,14 @@
 import sqlite3
 from datetime import datetime
+from os.path import join, dirname, realpath
 
 from kivy.metrics import dp
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivymd.app import MDApp
 from kivymd.uix.datatables import MDDataTable
 from plyer import battery
+from plyer import notification
+from plyer.utils import platform
 
 from function.gets import get_currency, get_five_day_cotation, multiple_quote, get_hash
 
@@ -20,6 +23,11 @@ class Menu(Screen):
 
 class Price(Screen):
     def press(self):
+        title = 'Pesquisa'
+        message = 'Pequsisa realizada com sucesso'
+        ticker = 'Teste'
+        kwargs = {'title': title, 'message': message, 'ticker': ticker, 'toast': True, 'timeout': 4}
+
         coin = get_currency(self.ids.name_coin.text)
         coin_get = self.ids.name_coin.text.upper()
         coin_name = coin[coin_get]['name']
@@ -47,6 +55,17 @@ class Price(Screen):
         conn.commit()
 
         conn.close()
+        mode = 'normal'
+        if mode == 'fancy':
+            kwargs['app_name'] = "Plyer Notification Example"
+            if platform == "win":
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.ico')
+                kwargs['timeout'] = 4
+            else:
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.png')
+        elif mode == 'toast':
+            kwargs['toast'] = True
+        notification.notify(**kwargs)
 
     @staticmethod
     def back():
@@ -55,6 +74,12 @@ class Price(Screen):
 
 class Convert(Screen):
     def convert(self):
+
+        title = 'Pesquisa'
+        message = 'Pequsisa realizada com sucesso'
+        ticker = 'Teste'
+        kwargs = {'title': title, 'message': message, 'ticker': ticker, 'toast': True, 'timeout': 4}
+
         coin = get_currency(self.ids.name_coin.text)
         value_to_convert = float(self.ids.value_coin.text)
         coin_get = self.ids.name_coin.text.upper()
@@ -84,8 +109,19 @@ class Convert(Screen):
                       'hora': str(datetime.now())
                   })
         conn.commit()
-
         conn.close()
+
+        mode = 'normal'
+        if mode == 'fancy':
+            kwargs['app_name'] = "Plyer Notification Example"
+            if platform == "win":
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.ico')
+                kwargs['timeout'] = 4
+            else:
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.png')
+        elif mode == 'toast':
+            kwargs['toast'] = True
+        notification.notify(**kwargs)
 
     @staticmethod
     def back():
@@ -94,6 +130,11 @@ class Convert(Screen):
 
 class QuoteOfWeek(Screen):
     def quote_of_week(self):
+        title = 'Pesquisa'
+        message = 'Pequsisa realizada com sucesso'
+        ticker = 'Teste'
+        kwargs = {'title': title, 'message': message, 'ticker': ticker, 'toast': True, 'timeout': 4}
+
         coin = get_five_day_cotation(self.ids.name_coin.text)
 
         coin_name = coin[0]['name']
@@ -147,6 +188,18 @@ class QuoteOfWeek(Screen):
 
         conn.close()
 
+        mode = 'normal'
+        if mode == 'fancy':
+            kwargs['app_name'] = "Plyer Notification Example"
+            if platform == "win":
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.ico')
+                kwargs['timeout'] = 4
+            else:
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.png')
+        elif mode == 'toast':
+            kwargs['toast'] = True
+        notification.notify(**kwargs)
+
     @staticmethod
     def back():
         return Manager()
@@ -154,6 +207,11 @@ class QuoteOfWeek(Screen):
 
 class MultipleConvert(Screen):
     def multiple_convert_press(self):
+        title = 'Pesquisa'
+        message = 'Pequsisa realizada com sucesso'
+        ticker = 'Teste'
+        kwargs = {'title': title, 'message': message, 'ticker': ticker, 'toast': True, 'timeout': 4}
+
         coin = multiple_quote(self.ids.name_coin_1.text, self.ids.name_coin_2.text, self.ids.name_coin_3.text)
         value_to_convert = float(self.ids.value_coin.text)
 
@@ -191,6 +249,18 @@ class MultipleConvert(Screen):
         conn.commit()
 
         conn.close()
+
+        mode = 'normal'
+        if mode == 'fancy':
+            kwargs['app_name'] = "Plyer Notification Example"
+            if platform == "win":
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.ico')
+                kwargs['timeout'] = 4
+            else:
+                kwargs['app_icon'] = join(dirname(realpath(__file__)), 'plyer-icon.png')
+        elif mode == 'toast':
+            kwargs['toast'] = True
+        notification.notify(**kwargs)
 
     @staticmethod
     def back():
