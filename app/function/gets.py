@@ -1,5 +1,4 @@
 import json
-import random
 
 import requests
 
@@ -28,7 +27,3 @@ def multiple_quote(currency_abbreviation_1: str, currency_abbreviation_2: str, c
     )
     cotacao = request.json()
     return cotacao
-
-
-def get_hash() -> int:
-    return random.randint(0,99999)

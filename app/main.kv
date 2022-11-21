@@ -83,14 +83,6 @@
                 pos_hint: {"center_x": .5, "center_y": .10}
                 on_release: app.root.current = 'batery'
 
-        Button:
-            text: "Historico de pesquisas"
-            background_color: 188/255, 227/255, 217/255, 1
-            font_name: "Poppins-Medium.ttf"
-            size_hint: .79, .065
-            pos_hint: {"center_x": .5, "center_y": .15}
-            on_release: app.root.current = 'bd_screan'
-
 
 <Price>:
     name: 'price'
@@ -194,7 +186,20 @@
                     size: self.size
                     pos: self.pos
                     radius: [2]
-
+    Button:
+        text: "mostrar"
+        background_color: 0, 0, 0, 0
+        font_name: "Poppins-Medium.ttf"
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .025}
+        on_release: root.moedas()
+        canvas.before:
+            Color:
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]
 
 <QuoteOfWeek>:
     name: 'quote_of_week'
@@ -379,6 +384,20 @@
                     size: self.size
                     pos: self.pos
                     radius: [2]
+    Button:
+        text: "mostrar"
+        background_color: 0, 0, 0, 0
+        font_name: "Poppins-Medium.ttf"
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .025}
+        on_release: root.moedas()
+        canvas.before:
+            Color:
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]
 
 
 
@@ -505,6 +524,20 @@
                     size: self.size
                     pos: self.pos
                     radius: [2]
+    Button:
+        text: "mostrar"
+        background_color: 0, 0, 0, 0
+        font_name: "Poppins-Medium.ttf"
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .025}
+        on_release: root.moedas()
+        canvas.before:
+            Color:
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]
 
 <MultipleConvert>:
     name: 'MultipleConvert'
@@ -677,7 +710,20 @@
                     size: self.size
                     pos: self.pos
                     radius: [2]
-
+    Button:
+        text: "mostrar"
+        background_color: 0, 0, 0, 0
+        font_name: "Poppins-Medium.ttf"
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .025}
+        on_release: root.moedas()
+        canvas.before:
+            Color:
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]
 
 <BDScreen>:
     name: 'bd_screan'
@@ -723,6 +769,20 @@
                     size: self.size
                     pos: self.pos
                     radius: [2]
+    Button:
+        text: "mostrar"
+        background_color: 0, 0, 0, 0
+        font_name: "Poppins-Medium.ttf"
+        size_hint: .79, .065
+        pos_hint: {"center_x": .5, "center_y": .025}
+        on_release: root.moedas()
+        canvas.before:
+            Color:
+                rgb: 25/255, 38/255, 35/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [2]
 
 <Batery>:
     name: 'batery'

@@ -1,4 +1,5 @@
 import sqlite3
+import webbrowser
 from datetime import datetime
 from os.path import join, dirname, realpath
 
@@ -67,6 +68,9 @@ class Price(Screen):
             kwargs['toast'] = True
         notification.notify(**kwargs)
 
+    def moedas(self):
+        webbrowser.open('https://economia.awesomeapi.com.br/xml/available/uniq')
+
     @staticmethod
     def back():
         return Manager()
@@ -122,6 +126,9 @@ class Convert(Screen):
         elif mode == 'toast':
             kwargs['toast'] = True
         notification.notify(**kwargs)
+
+    def moedas(self):
+        webbrowser.open('https://economia.awesomeapi.com.br/xml/available/uniq')
 
     @staticmethod
     def back():
@@ -200,6 +207,9 @@ class QuoteOfWeek(Screen):
             kwargs['toast'] = True
         notification.notify(**kwargs)
 
+    def moedas(self):
+        webbrowser.open('https://economia.awesomeapi.com.br/xml/available/uniq')
+
     @staticmethod
     def back():
         return Manager()
@@ -261,6 +271,9 @@ class MultipleConvert(Screen):
         elif mode == 'toast':
             kwargs['toast'] = True
         notification.notify(**kwargs)
+
+    def moedas(self):
+        webbrowser.open('https://economia.awesomeapi.com.br/xml/available/uniq')
 
     @staticmethod
     def back():
